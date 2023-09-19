@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <script>
+        const message = '[[${message}]]';
+        message && alert(message);
+    </script>
+</head>
+<body>
+    <h1>Spring Security Project에 오신 걸 환영합니다.</h1>
+
+    <div>
+        <th:block sec:authorize="isAuthenticated()"> <!-- 로그인 되어 있니?-->
+            <button onclick="location.href='/member/mypage'">마이페이지</button>
+            <button onclick="location.href='member/logout'">로그아웃</button>
+        </th:block>
+        <th:block sec:authorize="isAnonymous()"> <!-- 로그인 안되어있니?-->
+            <button onclick="location.href='/member/login'">로그인</button>
+            <button onclick="location.href='member/join'">회원가입</button>
+        </th:block>
+    </div>
+
+    <div>
+        <button onclick="location.href='menu/list'">메뉴보기</button>
+        <th:block sec:authorize="hasAnyRole('MEMBER', 'ADMIN')"> <!-- 둘 중 하나만 가져도 -->
+            <button onclick="location.href='/order/regist'">주문하기</button>
+        </th:block>
+        <th:block sec:authorize="hasRole('ADMIN')"> <!-- 관리자여야만 -->
+            <button onclick="location.href='/admin/dashboard'">관리자메뉴</button>
+
+        </th:block>
+    </div>
+</body>
+</html>

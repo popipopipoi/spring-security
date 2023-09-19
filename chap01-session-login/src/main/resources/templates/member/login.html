@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script>
+        const message = '[[${message}]]';
+        message && alert(message);
+    </script>
+</head>
+<body>
+    <h1>로그인 페이지</h1>
+
+    <form action="/member/login" method="post">
+        <div>
+            <span>아이디 : </span>
+            <input type="text" name="username"/>
+        </div>
+        <div>
+            <span>비밀번호 : </span>
+            <input type="password" name="password"/>
+        </div>
+        <div>
+            <button>로그인</button>
+        </div>
+    </form>
+</body>
+</html>
