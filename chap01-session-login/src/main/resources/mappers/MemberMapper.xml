@@ -47,4 +47,36 @@
           LEFT JOIN TBL_AUTHORITY C ON(B.AUTHORITY_CODE = C.AUTHORITY_CODE)
          WHERE A.MEMBER_ID = #{ memberId }
     </select>
+
+    <insert id="registMember">
+        INSERT
+          INTO TBL_MEMBER
+        (
+          MEMBER_NO
+        , MEMBER_ID
+        , MEMBER_PWD
+        , MEMBER_NAME
+        )
+        VALUES
+        (
+          SEQ_MEMBER_NO.NEXTVAL
+        , #{ id }
+        , #{ pwd }
+        , #{ name }
+        )
+    </insert>
+
+    <insert id="addMemberAuthority">
+        INSERT
+          INTO TBL_MEMBER_ROLE
+        (
+          MEMBER_NO
+        , AUTHORITY_CODE
+        )
+        VALUES
+        (
+          SEQ_MEMBER_NO.CURRVAL
+        , 2
+        )
+    </insert>
 </mapper>
